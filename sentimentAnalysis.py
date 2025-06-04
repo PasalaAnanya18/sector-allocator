@@ -11,9 +11,9 @@ def get_sentiment(headlines, analyser):
             label = [labels[res['label'].lower()] for res in results]
             mean_score = sum(score) / len(score)
             mean_label = sum(label) / len(label)
-            if mean_label > 0:
+            if mean_score > 0:
                 mean_labels_words.append('positive')
-            elif mean_label < 0:
+            elif mean_score < 0:
                 mean_labels_words.append('negative')
             else:
                 mean_labels_words.append('neutral')
