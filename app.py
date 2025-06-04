@@ -36,7 +36,7 @@ if 'headlines' in st.session_state:
             tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
             analyser = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer)
             df = st.session_state.headlines
-            df = df[df['headline'].apply(lambda x: isinstance(x, str) and x.strip() != "")]
+            df = df[df['headlines'].apply(lambda x: isinstance(x, str) and x.strip() != "")]
             st.session_state.headlines = df
             sentiment_results = get_sentiment(st.session_state.headlines, analyser)
             st.session_state.sentiment_results = sentiment_results
