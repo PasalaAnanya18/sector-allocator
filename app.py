@@ -30,9 +30,7 @@ if 'headlines' in st.session_state:
 
     if st.sidebar.button("Analyze Sentiment"):
         with st.spinner("Analyzing sentiment..."):
-            model = AutoModelForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone', low_cpu_mem_usage=False)
-            model.to_empty(device=torch.device('cpu'))
-            model.load_state_dict(AutoModelForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone').state_dict(), assign=True)
+            model = AutoModelForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone')
             tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
             analyser = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer)
             sentiment_results = get_sentiment(st.session_state.headlines, analyser)
