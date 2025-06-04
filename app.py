@@ -36,21 +36,21 @@ if 'headlines' in st.session_state:
             sentiment_results = get_sentiment(st.session_state.headlines, analyser)
             st.session_state.sentiment_results = sentiment_results
 
-        if 'sentiment_results' in st.session_state:
-            st.subheader("Sentiment Analysis Results")
-            st.dataframe(st.session_state.sentiment_results)
-            
-            if st.sidebar.button("Allocate Sectors"):
-                with st.spinner("Allocating sectors..."):
-                    allocation = allocate_sector(st.session_state.sentiment_results)
-                    st.session_state.allocation = allocation
+    if 'sentiment_results' in st.session_state:
+        st.subheader("Sentiment Analysis Results")
+        st.dataframe(st.session_state.sentiment_results)
+        
+        if st.sidebar.button("Allocate Sectors"):
+            with st.spinner("Allocating sectors..."):
+                allocation = allocate_sector(st.session_state.sentiment_results)
+                st.session_state.allocation = allocation
 
-            if 'allocation' in st.session_state:
-                st.subheader("Sector Allocation")
-                st.write(st.session_state.allocation)
-                st.bar_chart(st.session_state.allocation)
-                st.write("### Allocation Weights")
-                st.dataframe(pd.DataFrame(st.session_state.allocation.items(), columns=['Sector', 'Weight (%)']))
+        if 'allocation' in st.session_state:
+            st.subheader("Sector Allocation")
+            st.write(st.session_state.allocation)
+            st.bar_chart(st.session_state.allocation)
+            st.write("### Allocation Weights")
+            st.dataframe(pd.DataFrame(st.session_state.allocation.items(), columns=['Sector', 'Weight (%)']))
 else:
     st.info("Please select sectors and fetch headlines to start the analysis.")
     st.sidebar.info("Use the sidebar to select sectors and fetch headlines.")
