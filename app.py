@@ -51,6 +51,6 @@ if 'headlines' in st.session_state:
                 st.bar_chart(st.session_state.allocation)
                 st.write("### Allocation Weights")
                 st.dataframe(pd.DataFrame(st.session_state.allocation.items(), columns=['Sector', 'Weight (%)']))
-    else:
-        st.info("Please select sectors and fetch headlines to start the analysis.")
-        st.sidebar.info("Use the sidebar to select sectors and fetch headlines.")
+else:
+    st.info("Please select sectors and fetch headlines to start the analysis.")
+    st.sidebar.info("Use the sidebar to select sectors and fetch headlines.")
