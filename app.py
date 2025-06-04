@@ -35,6 +35,7 @@ if 'headlines' in st.session_state:
             model.load_state_dict(AutoModelForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone').state_dict(), assign=True)
             tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
             analyser = pipeline('sentiment-analysis', model=model, tokenizer=tokenizer)
+            st.session_state.headlines = [h for h in st.session_state.headlines if isinstance(h, str) and h.strip() != ""]
             sentiment_results = get_sentiment(st.session_state.headlines, analyser)
             st.session_state.sentiment_results = sentiment_results
 
